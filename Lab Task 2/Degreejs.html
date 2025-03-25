@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Degree Selection</title>
+</head>
+<body>
+    
+    <form action="BGjs.html" onsubmit="return validateDegree()">
+        <label><b>Degree:</b></label><br>
+        <input type="checkbox" name="degree" value="SSC"> SSC
+        <input type="checkbox" name="degree" value="HSC"> HSC
+        <input type="checkbox" name="degree" value="BSc"> BSc
+        <p id="degreeerror"></p>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function validateDegree() 
+        {
+            let degrees = document.querySelectorAll('input[name="degree"]:checked');
+            let degreeerror = document.getElementById('degreeerror');
+
+            if (degrees.length === 0) 
+            {
+                degreeerror.innerHTML = " Please select at least one degree";
+                degreeerror.style.color = 'red';
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>

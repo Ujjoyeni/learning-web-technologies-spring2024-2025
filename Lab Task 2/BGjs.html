@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Blood Group Selection</title>
+</head>
+<body>
+
+    <form action="PPjs.html" onsubmit="return validateBloodGroup()">
+        <label><b>Blood Group:</b></label>
+        <select id="bloodgroup">
+            <option value="">Select</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+        </select>
+        <p id="bloodgrouperror"></p>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function validateBloodGroup() 
+        {
+            let bloodgroup = document.getElementById('bloodgroup').value;
+            let bloodgrouperror = document.getElementById('bloodgrouperror');
+
+            if (bloodgroup === "") 
+            {
+                bloodgrouperror.innerHTML = " Please select a blood group!";
+                bloodgrouperror.style.color = 'red';
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>

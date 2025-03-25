@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Email Validation</title>
+</head>
+<body>
+
+    <form action="Genderjs.html" onsubmit="return validateEmail()">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" value="" onkeyup="clearError()" />
+        <p id="emailerror"></p>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function validateEmail() 
+        {
+            let email = document.getElementById('email').value.trim();
+            let emailerror = document.getElementById('emailerror');
+            let isValid = true; 
+
+
+            if (email === "") 
+            {
+                emailerror.innerHTML = " Please enter your email";
+                emailerror.style.color = 'red';
+                isValid = false;
+            }
+
+            else if (!email.includes("@") || !email.includes(".")) 
+            {
+                emailerror.innerHTML = " Email must contain '@' and '.'";
+                emailerror.style.color = 'red';
+                isValid = false;
+            }
+
+            else if (email.indexOf("@") > email.lastIndexOf(".") || email.lastIndexOf(".") === email.length - 1) 
+            {
+                emailerror.innerHTML = " Invalid email format (e.g., sample@example.com)";
+                emailerror.style.color = 'red';
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function clearError() 
+        {
+            document.getElementById('emailerror').innerHTML = "";
+        }
+    </script>
+</body>
+</html>

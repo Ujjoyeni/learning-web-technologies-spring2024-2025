@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Profile Picture Upload</title>
+</head>
+<body>
+
+    <form action="" onsubmit="return validateProfilePicture()">
+        <label>User ID:</label>
+        <input type="text" id="userid">
+        <p id="useriderror"></p>
+
+        <label>Picture:</label>
+        <input type="file" id="picture">
+        <p id="pictureerror"></p>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function validateProfilePicture() 
+        {
+            let userid = document.getElementById('userid').value.trim();
+            let picture = document.getElementById('picture').files.length;
+            let useriderror = document.getElementById('useriderror');
+            let pictureerror = document.getElementById('pictureerror');
+
+            useriderror.innerHTML = "";
+            pictureerror.innerHTML = "";
+
+            if (userid === "" || isNaN(userid) || parseInt(userid) <= 0) 
+            {
+                useriderror.innerHTML = "User ID must be a positive number";
+                useriderror.style.color = 'red';
+                return false;
+            }
+
+            if (picture === 0) 
+            {
+                pictureerror.innerHTML = " Please upload a picture";
+                pictureerror.style.color = 'red';
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Date of Birth Validation</title>
+</head>
+<body>
+    <form action="Degreejs.html" onsubmit="return validateDOB()">
+        <label><b>Date of Birth:</b></label><br>
+        <input type="text" id="day" placeholder="dd" size="2"> /
+        <input type="text" id="month" placeholder="mm" size="2"> /
+        <input type="text" id="year" placeholder="yyyy" size="4">
+        <p id="doberror"></p>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function validateDOB() 
+        {
+            let day = document.getElementById('day').value.trim();
+            let month = document.getElementById('month').value.trim();
+            let year = document.getElementById('year').value.trim();
+            let doberror = document.getElementById('doberror');
+
+            if (day === "" || month === "" || year === "") 
+            {
+                doberror.innerHTML = " All fields are required";
+                doberror.style.color = 'red';
+                return false;
+            }
+
+            day = parseInt(day);
+            month = parseInt(month);
+            year = parseInt(year);
+
+            if (isNaN(day) || isNaN(month) || isNaN(year) ||
+                day < 1 || day > 31 || month < 1 || month > 12 || year < 1900 || year > 2016) 
+            {
+                doberror.innerHTML = " Invalid date (dd: 1-31, mm: 1-12, yyyy: 1900-2016)";
+                doberror.style.color = 'red';
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Name Validation Form</title>
+</head>
+<body>
+
+    <form action="Emailjs.html" onsubmit="return test()">
+        <label for="username">Name:</label>
+        <input type="text" id="username" name="username" value=""/>
+        <br>
+        <br>
+        <input type="submit" name="button" id="button" value="Submit" />
+    </form>
+
+    <p id="msg"></p>
+
+    <script>
+        function test() {
+            let username = document.getElementById('username').value.trim();
+            let msg = document.getElementById('msg');
+
+           
+            if (username === "") {
+                msg.innerHTML = "Please type name first";
+                msg.style.color = 'red';
+                return false; 
+            }
+
+            
+            let nameParts = username.split(' ');
+
+            
+            if (nameParts.length < 2) {
+                msg.innerHTML = "Name must contain at least 2 words";
+                msg.style.color = 'red';
+                return false; 
+            }
+
+            
+            for (let part of nameParts) {
+                let firstChar = part.charAt(0);
+
+               
+                if (!((firstChar >= 'A' && firstChar <= 'Z') || (firstChar >= 'a' && firstChar <= 'z'))) {
+                    msg.innerHTML = "Name must start with a letter";
+                    msg.style.color = 'red';
+                    return false; 
+                }
+            }
+
+            
+            for (let part of nameParts) {
+                for (let i = 0; i < part.length; i++) {
+                    let char = part.charAt(i);
+
+                   
+                    if (!(/[a-zA-Z.-]/.test(char))) {
+                        msg.innerHTML = "Name can only contain letters, dots, or dashes";
+                        msg.style.color = 'red';
+                        return false; 
+                    }
+                }
+            }
+
+            msg.innerHTML = ""; 
+            return true; 
+        }
+    </script>
+</body>
+</html>
